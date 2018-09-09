@@ -41,6 +41,12 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 100%;
+  grid-area: main;
+  align-self: center;
+  justify-self: center;
+  justify-content: center;
+  text-rendering: optimizeLegibility;
 }
 @media (max-width: 40rem) {
   .card-container {

@@ -122,12 +122,6 @@ body {
     grid-template-areas: '. main main .' '. main main .';
   }
 
-  #container {
-    grid-area: main;
-    align-self: center;
-    justify-self: center;
-  }
-
   .post-image {
     height: 100%;
   }
