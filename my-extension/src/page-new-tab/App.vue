@@ -1,16 +1,15 @@
 <template>
-<div>
+<div >
   <h2>Honey Noodle!</h2>
+  <div v-if="loading">
+      ...
+  </div>
+
   <div class="cards">
-    <div class="card-container">
-      <git-card></git-card>
+    <div v-for="card of cards" :key="card.name" class="card-container">
+      <git-card v-bind:card="card"></git-card>
     </div>
-    <div class="card-container">
-      <git-card></git-card>
-    </div>    
-    <div class="card-container">
-      <git-card></git-card>
-    </div>
+
   </div>
 </div>
 
@@ -19,7 +18,37 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      cards: [],
+      loading: false,
+    };
+  },
+  mounted: function() {
+    console.log('hey');
+    this.getTrending();
+  },
+  methods: {
+    getTrending: function() {
+      let _this = this;
+      _this.loading = true;
+
+      fetch('https://github-trending-api.now.sh/developers?language=javascript&since=weekly')
+        .then(function(response) {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response.json();
+        })
+        .then(function(response) {
+          console.log(response);
+          // save on localstorage
+          _this.cards = response;
+          _this.loading = false;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

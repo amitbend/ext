@@ -1,13 +1,13 @@
 <template>
 
-<a class="card-link" href="#">
+<a class="card-link" v-bind:href="url">
   <article class="blog-card">
-    <img class="post-image" :src="image" />
+    <img class="post-image" :src="avatar" />
     <div class="article-details">
-      <h4 class="post-category">{{ langs }}</h4>
-      <h3 class="post-title">{{ name }}</h3>
-      <p class="post-description">{{ desc }}</p>
-      <p class="post-author">By {{ author }}</p>
+      <h4 class="post-category">{{ language }}</h4>
+      <h3 class="post-title">{{ repo.name }}</h3>
+      <p class="post-description">{{ repo.description }}</p>
+      <span> <p class="post-author">By {{ name }}</p> {{ repo.s}} </span>
     </div>
   </article>
 </a>
@@ -15,13 +15,11 @@
 
 <script>
 export default {
-  data: () => ({
-    name: 'LALALAL repo',
-    langs: 'Javascript',
-    image: 'https://source.unsplash.com/DnWYw0zLJBg',
-    author: 'Katherine Kato',
-    desc: `Seattle is a seaport city on the west coast of the United States...`,
-  }),
+  props: ['card'],
+  data: function() {
+    console.log(this);
+    return this.card;
+  },
 };
 </script>
 
