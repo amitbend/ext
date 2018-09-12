@@ -15,7 +15,8 @@
     "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue2-storage": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-rc.1",

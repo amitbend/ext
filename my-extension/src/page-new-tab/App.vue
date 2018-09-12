@@ -24,30 +24,42 @@ export default {
     };
   },
   mounted: function() {
-    console.log('hey');
     this.getTrending();
   },
   methods: {
     getTrending: function() {
       let _this = this;
       _this.loading = true;
-
-      fetch('https://github-trending-api.now.sh/developers?language=javascript&since=weekly')
-        .then(function(response) {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          return response.json();
-        })
-        .then(function(response) {
-          console.log(response);
-          // save on localstorage
-          _this.cards = response;
-          _this.loading = false;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      let isLocalExists = this.getLocal();
+      if (!isLocalExists) {
+        fetch('https://github-trending-api.now.sh/developers?language=javascript&since=weekly')
+          .then(function(response) {
+            if (!response.ok) {
+              throw Error(response.statusText);
+            }
+            return response.json();
+          })
+          .then(function(response) {
+            // save on localstorage
+            _this.cards = response;
+            _this.loading = false;
+            _this.saveLocal();
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+    },
+    saveLocal: function() {
+      this.$storage.set('cards', { key: 'cards', value: this.cards }, { ttl: 60 * 1000 }); // 1 min
+    },
+    getLocal: function() {
+      const data = this.$storage.get('cards');
+      if (data && data.value) {
+        this.cards = data.value;
+        return true;
+      }
+      return false;
     },
   },
 };

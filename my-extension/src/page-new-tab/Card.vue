@@ -4,10 +4,10 @@
   <article class="blog-card">
     <img class="post-image" :src="avatar" />
     <div class="article-details">
-      <h4 class="post-category">{{ language }}</h4>
+      <h4 class="post-category">language </h4>
       <h3 class="post-title">{{ repo.name }}</h3>
       <p class="post-description">{{ repo.description }}</p>
-      <span> <p class="post-author">By {{ name }}</p> {{ repo.s}} </span>
+      <span> <p class="post-author">By {{ name || username }}</p> </span>
     </div>
   </article>
 </a>
@@ -17,7 +17,6 @@
 export default {
   props: ['card'],
   data: function() {
-    console.log(this);
     return this.card;
   },
 };
