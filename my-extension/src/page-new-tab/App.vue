@@ -1,15 +1,16 @@
 <template>
 <div >
-  <h2>Honey Noodle!</h2>
+  <h2 class="header">Honey Noodle!</h2>
   <div v-if="loading">
-      ...
+      <vue-loading spinner="folding-cube"></vue-loading>
   </div>
+<vue-loading spinner="circles"></vue-loading>
+
 
   <div class="cards">
     <div v-for="card of cards" :key="card.name" class="card-container">
       <git-card v-bind:card="card"></git-card>
     </div>
-
   </div>
 </div>
 
@@ -23,6 +24,7 @@ export default {
       loading: false,
     };
   },
+  props: { language: { type: String, default: 'Javascript' } },
   mounted: function() {
     this.getTrending();
   },
@@ -66,6 +68,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  text-align: center;
+  padding: 1.5em;
+}
 @media (min-width: 40rem) {
   .card-container {
     width: 50%;
