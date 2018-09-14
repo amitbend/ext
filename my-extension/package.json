@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "vue": "^2.5.17",
-    "vue-simple-loading": "^1.1.5",
     "vue-single-select": "^1.0.22",
     "vue2-storage": "^3.3.0"
   },
@@ -47,6 +46,7 @@
     "pretty-quick": "^1.6.0",
     "sass-loader": "^7.1.0",
     "vue-loader": "^15.4.0",
+    "vue-simple-loading": "^1.1.5",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.16.5",
     "webpack-chrome-extension-reloader": "^0.8.3",
