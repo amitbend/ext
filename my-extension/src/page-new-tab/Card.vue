@@ -1,7 +1,7 @@
 <template>
-
+<div class="card">
 <a class="card-link" v-bind:href="url">
-  <article class="blog-card">
+  <article class="blog-card" >
     <img class="post-image" :src="avatar" />
     <div class="article-details">
       <h4 class="post-category">language </h4>
@@ -11,6 +11,7 @@
     </div>
   </article>
 </a>
+</div>
 </template>
 
 <script>
@@ -48,6 +49,9 @@ body {
 }
 
 .blog-card {
+  width: inherit;
+  height: inherit;
+
   display: flex;
   flex-direction: row;
   background: #fff;
@@ -56,7 +60,25 @@ body {
   overflow: hidden;
 }
 
+.card {
+  width: inherit;
+  height: inherit;
+
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .card-link {
+  width: inherit;
+  height: inherit;
   position: relative;
   display: block;
   color: inherit;
@@ -120,7 +142,8 @@ body {
   }
 
   .post-image {
-    height: 100%;
+    // height: 100%;
+    vertical-align: middle;
   }
 
   .blog-card {
@@ -135,5 +158,15 @@ body {
       grid-template-rows: 12rem 1fr;
     }
   }
+  //   @media (min-width: 40rem) {
+  //   .blog-card {
+  //     width: 100%;
+  //   }
+  // }
+  // @media (min-width: 56rem) {
+  //   .blog-card {
+  //     width: 50%;
+  //   }
+  // }
 }
 </style>

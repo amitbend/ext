@@ -91,8 +91,8 @@ export default {
 }
 @media (max-width: 40rem) {
   .card-container {
-    width: 18rem;
-    height: 27.25rem;
+    width: 13.5rem;
+    height: 20.44rem;
   }
 
   git-card {
@@ -101,8 +101,8 @@ export default {
 }
 
 .card-container {
-  width: 30rem;
-  height: 13.625rem;
+  width: 27rem;
+  height: 13.2625rem;
   display: flex;
   padding: 1rem;
 }
