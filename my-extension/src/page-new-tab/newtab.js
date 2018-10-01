@@ -10,6 +10,7 @@ import VueSingleSelect from 'vue-single-select';
 Vue.use(Vue2Storage);
 Vue.use(VueLoading);
 
+Vue.component('vue-loading', VueLoading);
 Vue.component('vue-single-select', VueSingleSelect);
 Vue.component('git-card', gitCard);
 

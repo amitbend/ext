@@ -1,10 +1,10 @@
 <template>
 <div class="card">
-<a class="card-link" v-bind:href="url">
+<a class="card-link" v-bind:href="repo.url">
   <article class="blog-card" >
     <img class="post-image" :src="avatar" />
     <div class="article-details">
-      <h4 class="post-category">language </h4>
+      <h4 class="post-category">{{ language.name}} </h4>
       <h3 class="post-title">{{ repo.name }}</h3>
       <p class="post-description">{{ repo.description }}</p>
       <span> <p class="post-author">By {{ name || username }}</p> </span>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ['card'],
+  props: ['card', 'language'],
   data: function() {
     return this.card;
   },
@@ -25,6 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
 * {
   box-sizing: border-box;
 }
@@ -34,8 +35,8 @@ export default {
 }
 
 body {
+  font-family: 'Roboto', 'Ubuntu', sans-serif;
   display: flex;
-  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: #777;
   background: #eedfcc;
