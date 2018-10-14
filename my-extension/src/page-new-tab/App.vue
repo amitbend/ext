@@ -8,7 +8,7 @@
           v-model="language"
           :options="langs"
           :required="true"
-          :placeholder="language"
+          :placeholder="language.name"
           optionLabel="name"
           :classes="{
                     dropdown: 'dropdown'
@@ -22,7 +22,7 @@
   </div>
   <div class="cards">
     <div v-for="card of cards" :key="card.name" class="card-container">
-      <git-card v-bind:card="card" v-bind:language="language"></git-card>
+      <git-card v-bind:card="card" v-bind:language="language" :key="card.repo.name"></git-card>
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@ export default {
       cards: [],
       loading: false,
       langs: [
-        { urlParam: 'c++', name: 'C++' },
+        { urlParam: 'cpp', name: 'C++' },
         { urlParam: 'html', name: 'HTML' },
         { urlParam: 'java', name: 'Java' },
         { urlParam: 'javascript', name: 'JavaScript' },
@@ -46,11 +46,11 @@ export default {
       ],
     };
   },
-  props: { language: { type: String, default: 'Javascript' } },
+  props: { language: { type: Object, default: { name: 'Javascript', urlParam: 'javascript' } } },
   watch: {
     language() {
       if (this.language) {
-        console.log('getting trending for ' + JSON.stringify(this.language));
+        console.log('getting trending for ' + JSON.stringify(this.language.name));
         this.getTrending(true);
       }
     },
@@ -65,7 +65,9 @@ export default {
       _this.loading = true;
       let isLocalExists = this.getLocal();
       if (!isLocalExists || force) {
-        fetch(`https://github-trending-api.now.sh/developers?language=${this.language}&since=daily`)
+        let uri = `https://github-trending-api.now.sh/developers?language=${this.language.urlParam}&since=daily`;
+        console.log('uri', uri);
+        fetch(uri)
           .then(function(response) {
             if (!response.ok) {
               throw Error(response.statusText);
@@ -76,6 +78,7 @@ export default {
             // save on localstorage
             _this.cards = response;
             _this.loading = false;
+            _this.clearLocal();
             _this.saveLocal();
           })
           .catch(function(error) {
@@ -83,18 +86,21 @@ export default {
           });
       } else _this.loading = false;
     },
-    saveLocal: function() {
+    saveLocal: function(topic = 'cards') {
       console.dir(this.cards);
 
-      this.$storage.set('cards', { key: 'cards', value: this.cards }, { ttl: 60 * 1000 }); // 1 min
+      this.$storage.set(topic, { key: topic, value: this[topic] }, { ttl: 60 * 1000 }); // 1 min
     },
-    getLocal: function() {
-      const data = this.$storage.get('cards');
+    getLocal: function(topic = 'cards') {
+      const data = this.$storage.get();
       if (data && data.value) {
         this.cards = data.value;
         return true;
       }
       return false;
+    },
+    clearLocal: function() {
+      this.$storage.clear();
     },
   },
 };
