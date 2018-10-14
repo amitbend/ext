@@ -59,12 +59,15 @@ export default {
   watch: {
     language() {
       if (this.language) {
+        this.saveLocal('language');
         console.log('getting trending for ' + JSON.stringify(this.language.name));
         this.getTrending(true);
       }
     },
   },
   mounted: function() {
+    const lang = this.$storage.get('language');
+    if (lang && lang.value) this.language = lang.value;
     this.getTrending();
   },
   methods: {
@@ -97,7 +100,6 @@ export default {
     },
     saveLocal: function(topic = 'cards') {
       console.dir(this.cards);
-
       this.$storage.set(topic, { key: topic, value: this[topic] }, { ttl: 60 * 1000 }); // 1 min
     },
     getLocal: function(topic = 'cards') {
@@ -109,7 +111,7 @@ export default {
       return false;
     },
     clearLocal: function() {
-      this.$storage.clear();
+      this.$storage.remove('cards');
     },
   },
 };
