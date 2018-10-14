@@ -7,7 +7,7 @@
       <h4 class="post-category">{{ language.name}} </h4>
       <h3 class="post-title">{{ repo.name }}</h3>
       <p class="post-description">{{ repo.description }}</p>
-      <span> <p class="post-author">By {{ name || username }}</p> </span>
+      <span> <p class="post-author">By {{ name }}</p> </span>
     </div>
   </article>
 </a>

@@ -1,20 +1,22 @@
 <template>
 <div >
-  <h2 class="header">Honey Noodle<img src="" /> </h2>
-  <div class="select-container">
-      <label>Language</label>
-      <vue-single-select
-          name="Language"
+  <div class="heading"></div>
+  <h2 class="header">Honey Muffin  
+     </h2>
+       <div class="select-container">
+      <vue-single-select class="select2"
           v-model="language"
           :options="langs"
           :required="true"
           :placeholder="language.name"
-          optionLabel="name"
+        optionLabel="name"
           :classes="{
-                    dropdown: 'dropdown'
+                    input : 'input2',
+                    dropdown: 'dropdown2',
           }"
      ></vue-single-select>
-  </div>
+  </div> 
+<img src="" />
  
 
   <div v-if="loading">
@@ -46,7 +48,14 @@ export default {
       ],
     };
   },
-  props: { language: { type: Object, default: { name: 'Javascript', urlParam: 'javascript' } } },
+  props: {
+    language: {
+      type: Object,
+      default: () => {
+        return { name: 'Javascript', urlParam: 'javascript' };
+      },
+    },
+  },
   watch: {
     language() {
       if (this.language) {
@@ -113,34 +122,10 @@ body {
   font-family: Roboto, Ubuntu, sans-serif;
 }
 
-.dropdown {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: auto;
-  width: 20em;
-  height: 100%;
-  border-bottom: 0px;
-  border-radius: 3px;
-  font-size: 12px;
-  box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.5);
-}
-
-.vue-loading-container {
-  position: absolute;
-  left: 50% !important;
-  top: 50% !important;
-}
-
-.sk-cube {
-  background-color: aquamarine !important;
-}
-
 .header {
   text-align: center;
-  padding: 1em;
-  font-size: 2.5em;
 }
+
 @media (min-width: 40rem) {
   .card-container {
     width: 50%;
@@ -180,5 +165,67 @@ body {
   height: 13.2625rem;
   display: flex;
   padding: 1rem;
+}
+</style>
+
+<style lang="scss">
+.vue-loading-container {
+  position: absolute;
+  left: 50% !important;
+  top: 50% !important;
+  color: aqua;
+}
+
+.sk-cube {
+  background-color: aquamarine !important;
+}
+
+.dropdown2 {
+  width: 9.8rem !important;
+  font-size: 12px;
+  box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.5);
+}
+ul {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+}
+
+.header {
+  font-size: 2em;
+}
+
+.input2 {
+  width: 4.8rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  -webkit-appearance: none;
+  margin: 0px;
+  border-radius: 4px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  background-position-x: calc(100% - 8px);
+  background-position-y: center;
+  background-size: 8px 8px;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-position: calc(100% - 8px) center;
+  background-repeat: no-repeat;
+}
+
+.select-container {
+  text-align: center;
 }
 </style>
