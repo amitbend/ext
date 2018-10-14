@@ -50,7 +50,7 @@ export default {
   watch: {
     language() {
       if (this.language) {
-        console.log('getting trending for ' + this.language);
+        console.log('getting trending for ' + JSON.stringify(this.language));
         this.getTrending(true);
       }
     },
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     getTrending: function(force) {
-      console.log('fetching', force);
+      console.log('fetching...', force);
       let _this = this;
       _this.loading = true;
       let isLocalExists = this.getLocal();
