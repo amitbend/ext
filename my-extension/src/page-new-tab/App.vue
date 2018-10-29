@@ -1,8 +1,14 @@
 <template>
 <div >
-  <div class="heading"></div>
-  <h2 class="header">Honey Muffin  
-     </h2>
+  <div class="heading">
+  <img class="logo" src="https://i.postimg.cc/c4Lz93jD/HONEY-n-OODLE.png"/>
+  <div class="headings">
+  <h2 class="header">{{ new Date().toLocaleDateString('en-us',{weekday : 'long', month : 'long' , day : 'numeric' })}} </h2>
+  <h4 class="header2"> Honey Muffin </h4>
+  </div>
+
+  </div>
+
        <div class="select-container">
       <vue-single-select class="select2"
           v-model="language"
@@ -16,7 +22,7 @@
           }"
      ></vue-single-select>
   </div> 
-<img src="" />
+
  
 
   <div v-if="loading">
@@ -100,7 +106,7 @@ export default {
     },
     saveLocal: function(topic = 'cards') {
       console.dir(this.cards);
-      this.$storage.set(topic, { key: topic, value: this[topic] }, { ttl: 60 * 1000 }); // 1 min
+      this.$storage.set(topic, { key: topic, value: this[topic] }, { ttl: 60 * 1000 * 60 * 8 });
     },
     getLocal: function(topic = 'cards') {
       const data = this.$storage.get();
@@ -120,12 +126,52 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
-body {
-  font-family: Roboto, Ubuntu, sans-serif;
+.logo {
+  position: static;
+  margin-right: 20px;
+  padding: 0ch;
+  border: 0ch;
+  width: 85px;
+  height: 85px;
+  border-radius: 25px;
+  float: left;
+}
+
+.heading {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.headings {
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+  flex-direction: column;
+  position: static;
+  margin-bottom: 20px;
 }
 
 .header {
+  font-size: 1.75rem;
   text-align: center;
+  display: inline-flex;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.header2 {
+  align-self: flex-start;
+  font-size: 0.875rem;
+  color: #3c4043;
+  font-weight: 400;
+  margin: 5px;
+  margin-left: 0px;
+  font-family: roboto;
+}
+
+body {
+  font-family: Roboto, Ubuntu, sans-serif;
 }
 
 @media (min-width: 40rem) {

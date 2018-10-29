@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>Hello world!</p>
+    <p>Hey! 🙂 <br> Hope you're enjoying Honey Muffin</p>
+    <small> Send us a message <a href="mailto:me@amitbend.com">me@amitbend.com</a>  </small>
   </div>
 </template>
 
@@ -14,6 +15,6 @@ export default {
 
 <style lang="scss" scoped>
 p {
-  font-size: 20px;
+  font-size: 14px;
 }
 </style>
